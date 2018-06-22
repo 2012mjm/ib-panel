@@ -12,7 +12,7 @@ class LoginForm extends Component {
           {getFieldDecorator('mobile', {
             rules: [{required: true, message: 'این فیلد الزامی است'}]
           })(
-            <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,0.25)'}} />} placeholder="شماره موبایل" />
+            <Input prefix={<Icon type="mobile" style={{color: 'rgba(0,0,0,0.25)'}} />} placeholder="شماره موبایل" />
           )}
         </FormItem>
 
@@ -21,13 +21,6 @@ class LoginForm extends Component {
             rules: [{required: true, message: 'این فیلد الزامی است'}]
           })(
             <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,0.25)'}} />} type="password" placeholder="کلمه عبور" />
-          )}
-        </FormItem>
-        <FormItem>
-          {getFieldDecorator('target', {
-            initialValue: 'staff'
-          })(
-            <Input type="hidden" />
           )}
         </FormItem>
         <FormItem>

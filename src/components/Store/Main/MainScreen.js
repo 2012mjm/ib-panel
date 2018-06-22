@@ -15,7 +15,7 @@ class MainStoreScreen extends Component {
   handleMenuClick ({ key }) {
     if (key === 'logout') {
       this.props.dispatch(logout())
-      this.props.history.push('/login')
+      this.props.history.push('/account')
     }
   }
 
@@ -36,7 +36,7 @@ class MainStoreScreen extends Component {
             <div className="left">
               <Dropdown overlay={menu}>
                 <span className="action account">
-                  {auth.isAuthenticated && <span>{`${auth.firstName} ${auth.lastName}`}</span>} <Avatar size="small" className="avatar" src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png" />
+                  {auth.isAuthenticated && <span>{`${auth.storeOwner || auth.mobile} [${auth.storeName}]`}</span>} <Avatar size="small" className="avatar" src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png" />
                 </span>
               </Dropdown>
             </div>
@@ -50,7 +50,7 @@ class MainStoreScreen extends Component {
           </Content>
         </Layout>
 
-        {!auth.isAuthenticated && <Redirect to="/login" />}
+        {!auth.isAuthenticated && <Redirect to="/account" />}
       </Layout>
     )
   }

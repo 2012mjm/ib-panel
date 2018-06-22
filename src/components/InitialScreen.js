@@ -6,7 +6,7 @@ class InitialScreen extends Component {
   render () {
     const { isAuthenticated } = this.props.auth
     return (
-      <Redirect to={`${isAuthenticated ? '/store' : '/login'}`} />
+      <Redirect to={`${isAuthenticated ? '/store' : '/account'}`} />
     )
   }
 }

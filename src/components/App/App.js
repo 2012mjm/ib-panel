@@ -3,7 +3,7 @@ import './App.css'
 import {LocaleProvider} from 'antd'
 import {Route} from 'react-router-dom'
 import faIR from 'antd/lib/locale-provider/fa_IR'
-import StoreLoginScreen from '../Store/Login/LoginScreen'
+import StoreAccountScreen from '../Store/Account/AccountScreen'
 import AdminLoginScreen from '../Admin/Login/LoginScreen'
 import InitialScreen from '../InitialScreen'
 import configStore from '../../lib/configureStore'
@@ -43,7 +43,7 @@ class App extends Component {
               <Route path="/admin/login" exact component={AdminLoginScreen} />
               <Route path="/admin" component={MainAdminScreen} />
               <Route path="/store" component={MainStoreScreen} />
-              <Route path="/login" component={StoreLoginScreen} />
+              <Route path="/account" component={StoreAccountScreen} />
             </div>
           </LocaleProvider>
         </ConnectedRouter>
