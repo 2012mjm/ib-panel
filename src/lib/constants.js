@@ -1,4 +1,4 @@
-const SERVER_DOMAIN = 'localhost'
+const SERVER_DOMAIN = 'ibapp.ir'
 const PROTO = 'http'
 
 export const API_URL = `${PROTO}://${SERVER_DOMAIN}:1312/`
