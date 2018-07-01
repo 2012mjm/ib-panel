@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
-import {Redirect} from 'react-router-dom'
+import {Route, Switch, Redirect} from 'react-router-dom'
 import './main.css'
 import {Layout, Dropdown, Avatar, Menu, Icon} from 'antd'
 import {connect} from 'react-redux'
 import {logout} from '../../../actions/auth'
 import SideMenu from '../SideMenu/SideMenu'
+import CategoryScreen from '../Category/Screen'
 
 class MainScreen extends Component {
   constructor (props) {
@@ -43,6 +44,10 @@ class MainScreen extends Component {
             </div>
           </Header>
           <Content className="main-content">
+            <Switch>
+              <Route path="/admin/category" component={CategoryScreen} />
+              {/* <Route path="/admin" component={ManageListScreen} /> */}
+            </Switch>
             <div className="globalFooter">
               <div className="copyright">
                 <Icon type="copyright" /> کلیه حقوق محفوظ است

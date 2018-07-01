@@ -23,23 +23,21 @@ class SideMenu extends Component {
 
   render () {
     const { Sider } = Layout
-    const { SubMenu } = Menu
+    // const { SubMenu } = Menu
     return (
       <Sider collapsible collapsed={this.props.collapsedMenu} onCollapse={() => console.log('')}>
         <div className="logo" >
           {/* <img src={logo} alt="logo" height="39" width="97" className="logoimg" /> */}
         </div>
         <Menu id="mainSideMenu" theme="dark" defaultSelectedKeys={['1']} mode="inline" onClick={this.handleClick}>
-        <SubMenu title={<span><Icon type="database" /><span className="menu">محصولات</span></span>}>
-            <Menu.Item key="/admin/product">
-              <Icon type="file-text" />
-              <span className="menu">لیست محصولات</span>
-            </Menu.Item>
-            <Menu.Item key="/admin/product/add">
-              <Icon type="file-text" />
-              <span className="menu">افزودن محصول جدید</span>
-            </Menu.Item>
-          </SubMenu>
+          <Menu.Item key="/admin/product">
+            <Icon type="layout" />
+            <span className="menu">محصولات</span>
+          </Menu.Item>
+          <Menu.Item key="/admin/category">
+            <Icon type="layout" />
+            <span className="menu">دسته‌بندی‌ها</span>
+          </Menu.Item>
         </Menu>
       </Sider>
     )

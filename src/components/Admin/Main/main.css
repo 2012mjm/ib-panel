@@ -122,7 +122,11 @@
 .ant-table-tbody .ant-table-expanded-row td {
   text-align: right;
 }
-
 .ant-time-picker {
   width: 100%;
+}
+.default-photo {
+  max-width: 150px;
+  border: 1px solid silver;
+  padding: 3px;
 }
