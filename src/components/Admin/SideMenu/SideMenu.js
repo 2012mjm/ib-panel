@@ -31,11 +31,15 @@ class SideMenu extends Component {
         </div>
         <Menu id="mainSideMenu" theme="dark" defaultSelectedKeys={['1']} mode="inline" onClick={this.handleClick}>
           <Menu.Item key="/admin/product">
-            <Icon type="layout" />
+            <Icon type="shopping-cart" />
             <span className="menu">محصولات</span>
           </Menu.Item>
+          <Menu.Item key="/admin/store">
+            <Icon type="shop" />
+            <span className="menu">فروشگاه‌ها</span>
+          </Menu.Item>
           <Menu.Item key="/admin/category">
-            <Icon type="layout" />
+            <Icon type="profile" />
             <span className="menu">دسته‌بندی‌ها</span>
           </Menu.Item>
         </Menu>

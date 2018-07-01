@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import {logout} from '../../../actions/auth'
 import SideMenu from '../SideMenu/SideMenu'
 import CategoryScreen from '../Category/Screen'
+import StoreScreen from '../Store/Screen'
 
 class MainScreen extends Component {
   constructor (props) {
@@ -46,7 +47,7 @@ class MainScreen extends Component {
           <Content className="main-content">
             <Switch>
               <Route path="/admin/category" component={CategoryScreen} />
-              {/* <Route path="/admin" component={ManageListScreen} /> */}
+              <Route path="/admin/store" component={StoreScreen} />
             </Switch>
             <div className="globalFooter">
               <div className="copyright">
