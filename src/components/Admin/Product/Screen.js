@@ -1,10 +1,10 @@
 import React from 'react'
 import { Card, Layout, Row, Col, Button } from 'antd'
 import { connect } from 'react-redux'
-import { categoryThunk } from '../../../thunks/category'
+import { productThunk } from '../../../thunks/product'
 import AddModal from './AddModal'
 import EditModal from './EditModal'
-import TreeList from './TreeList'
+import TableList from './TableList'
 
 class Screen extends React.Component {
   constructor (props) {
@@ -13,31 +13,28 @@ class Screen extends React.Component {
       loading: false,
       isAddModalVisible: false,
       isEditModalVisible: false,
-      isTreeShow: false,
       list: [],
-      categoryValues: {}
+      productValues: {}
     }
     this.toggleAddModal = this.toggleAddModal.bind(this)
     this.toggleEditModal = this.toggleEditModal.bind(this)
-    this.getCategoryList = this.getCategoryList.bind(this)
+    this.getProductList = this.getProductList.bind(this)
   }
 
   toggleAddModal (show = true) {
     this.setState({isAddModalVisible: !!show})
   }
 
-  toggleEditModal (show = true, category) {
-    this.setState({isEditModalVisible: !!show, categoryValues: category, isTreeShow: false}, () => {
-      this.setState({isTreeShow: true})
-    })
+  toggleEditModal (show = true, product) {
+    this.setState({isEditModalVisible: !!show, productValues: product})
   }
 
-  getCategoryList () {
+  getProductList () {
     this.setState({loading: true})
 
-    this.props.dispatch(categoryThunk()).then((res) => {
+    this.props.dispatch(productThunk(1, 100)).then((res) => {
       if (res.length > 0) {
-        this.setState({list: res, loading: false, isTreeShow: true})
+        this.setState({list: res, loading: false})
         return true
       } else {
         this.setState({loading: false})
@@ -50,7 +47,7 @@ class Screen extends React.Component {
   }
 
   componentDidMount () {
-    this.getCategoryList()
+    this.getProductList()
   }
 
   componentWillReceiveProps (nextProps) {
@@ -60,20 +57,20 @@ class Screen extends React.Component {
   }
 
   render () {
-    const { list, isTreeShow, isAddModalVisible, isEditModalVisible, categoryValues } = this.state
+    const { list, loading, isAddModalVisible, isEditModalVisible, productValues } = this.state
     return (
       <Layout>
-        <AddModal show={isAddModalVisible} viewer={this.toggleAddModal} dispatch={this.props.dispatch} reloadList={this.getCategoryList} />
-        <EditModal show={isEditModalVisible} viewer={this.toggleEditModal} dispatch={this.props.dispatch} reloadList={this.getCategoryList} category={categoryValues} />
+        {/* <AddModal show={isAddModalVisible} viewer={this.toggleAddModal} dispatch={this.props.dispatch} reloadList={this.getProductList} />
+        <EditModal show={isEditModalVisible} viewer={this.toggleEditModal} dispatch={this.props.dispatch} reloadList={this.getProductList} product={productValues} /> */}
         <Layout.Content>
           <Row gutter={48}>
-            <Col span={12}><h2>دسته بندی ها</h2></Col>
+            <Col span={12}><h2>محصولات</h2></Col>
             <Col span={12}>
-              <Button className="btn-left" type="primary" onClick={this.toggleAddModal}>افزودن</Button>
+              {/* <Button className="btn-left" type="primary" onClick={this.toggleAddModal}>افزودن محصول جدید</Button> */}
             </Col>
           </Row>
           <Card>
-            {isTreeShow && <TreeList list={list} viewer={this.toggleEditModal} />}
+            <TableList list={list} viewer={this.toggleEditModal} loading={loading} />
           </Card>
         </Layout.Content>
       </Layout>
@@ -83,7 +80,7 @@ class Screen extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    list: state.category.list
+    list: state.product.list
   }
 }
 
