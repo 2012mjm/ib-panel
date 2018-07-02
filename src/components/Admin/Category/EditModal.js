@@ -20,11 +20,11 @@ class EditModal extends React.Component {
 
       let data = new window.FormData()
       data.append('id', id)
-      if(values.photo) data.append('photo', values.photo.file)
       if(values.parent_id) data.append('parent_id', values.parent_id)
       if(values.name_fa) data.append('name_fa', values.name_fa)
       if(values.name_en) data.append('name_en', values.name_en)
       if(values.color) data.append('color', values.color)
+      if(values.photo) data.append('photo', values.photo.file)
 
       this.props.dispatch(updateCategoryThunk(data)).then(res => {
         notifySuccess('دسته مورد نظر با موفقیت بروز شد.')
