@@ -54,6 +54,7 @@ class EditModal extends React.Component {
     const { category } = this.props
     return (
       <Modal
+        destroyOnClose
         title="ویرایش دسته موردنظر"
         visible={this.props.show}
         onCancel={() => this.props.viewer(false)}

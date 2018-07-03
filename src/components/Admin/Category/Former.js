@@ -21,7 +21,10 @@ class Former extends Component {
             rules: [{required: false}],
             initialValue: (category.parent_id) && category.parent_id.toString()
           })(
-            <TreeSelector />
+            <TreeSelector
+              value={(category.parent_id) && category.parent_id.toString()}
+              onSelect={(value) => this.props.form.setFieldsValue({parent_id: value})}
+              />
           )}
         </FormItem>
         <FormItem label="عنوان فارسی" {...formItemLayout}>

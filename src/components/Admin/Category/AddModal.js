@@ -40,6 +40,7 @@ class AddModal extends React.Component {
   render () {
     return (
       <Modal
+        destroyOnClose
         title="افزودن دسته جدید"
         visible={this.props.show}
         onCancel={() => this.props.viewer(false)}

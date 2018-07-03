@@ -71,6 +71,7 @@ class TreeSelector extends React.Component {
         dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
         treeData={this.normalize(list)}
         placeholder={this.props.placeholder || "والد"}
+        {...this.props}
       />
     )
   }
