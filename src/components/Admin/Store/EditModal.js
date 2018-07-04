@@ -35,6 +35,7 @@ class EditModal extends React.Component {
     const { store } = this.props
     return (
       <Modal
+        destroyOnClose
         title="ویرایش فروشگاه موردنظر"
         visible={this.props.show}
         onCancel={() => this.props.viewer(false)}

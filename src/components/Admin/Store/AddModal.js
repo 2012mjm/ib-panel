@@ -33,6 +33,7 @@ class AddModal extends React.Component {
   render () {
     return (
       <Modal
+        destroyOnClose
         title="ساخت فروشگاه جدید"
         visible={this.props.show}
         onCancel={() => this.props.viewer(false)}

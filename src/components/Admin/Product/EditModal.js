@@ -4,7 +4,7 @@ import { Modal, Button } from 'antd'
 import { notifySuccess, notifyError } from '../../../lib/notification'
 import { errorHandler } from '../../../lib/utils'
 import { updateProductThunk } from '../../../thunks/product'
-import Former from './Former'
+import FormerInfo from './FormerInfo'
 
 class EditModal extends React.Component {
   constructor (props) {
@@ -35,11 +35,12 @@ class EditModal extends React.Component {
     const { product } = this.props
     return (
       <Modal
+        destroyOnClose
         title="ویرایش محصول موردنظر"
         visible={this.props.show}
         onCancel={() => this.props.viewer(false)}
         footer={<Button onClick={() => this.props.viewer(false)}>لغو</Button>}>
-        <Former onSubmit={this.update} dispatch={this.props.dispatch} product={product} />
+          <FormerInfo onSubmit={this.update} dispatch={this.props.dispatch} product={product} />
       </Modal>
     )
   }

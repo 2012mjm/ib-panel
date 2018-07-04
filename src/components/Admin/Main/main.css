@@ -130,3 +130,7 @@
   border: 1px solid silver;
   padding: 3px;
 }
+.ant-upload-list-picture-card .ant-upload-list-item-actions {
+  left: 50%;
+  right: auto;
+}

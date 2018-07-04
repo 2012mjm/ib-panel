@@ -21,15 +21,15 @@ class Screen extends React.Component {
     this.getProductList = this.getProductList.bind(this)
   }
 
-  toggleAddModal (show = true) {
+  toggleAddModal = (show = true) => {
     this.setState({isAddModalVisible: !!show})
   }
 
-  toggleEditModal (show = true, product) {
+  toggleEditModal = (show = true, product) => {
     this.setState({isEditModalVisible: !!show, productValues: product})
   }
 
-  getProductList () {
+  getProductList = () => {
     this.setState({loading: true})
 
     this.props.dispatch(productThunk(1, 100)).then((res) => {
@@ -46,11 +46,11 @@ class Screen extends React.Component {
     })
   }
 
-  componentDidMount () {
+  componentDidMount = () => {
     this.getProductList()
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps = (nextProps) => {
     if (nextProps.list) {
       return this.setState({list: nextProps.list})
     }
@@ -60,13 +60,13 @@ class Screen extends React.Component {
     const { list, loading, isAddModalVisible, isEditModalVisible, productValues } = this.state
     return (
       <Layout>
-        {/* <AddModal show={isAddModalVisible} viewer={this.toggleAddModal} dispatch={this.props.dispatch} reloadList={this.getProductList} />
-        <EditModal show={isEditModalVisible} viewer={this.toggleEditModal} dispatch={this.props.dispatch} reloadList={this.getProductList} product={productValues} /> */}
+        <AddModal show={isAddModalVisible} viewer={this.toggleAddModal} dispatch={this.props.dispatch} reloadList={this.getProductList} />
+        <EditModal show={isEditModalVisible} viewer={this.toggleEditModal} dispatch={this.props.dispatch} reloadList={this.getProductList} product={productValues} />
         <Layout.Content>
           <Row gutter={48}>
             <Col span={12}><h2>محصولات</h2></Col>
             <Col span={12}>
-              {/* <Button className="btn-left" type="primary" onClick={this.toggleAddModal}>افزودن محصول جدید</Button> */}
+              <Button className="btn-left" type="primary" onClick={this.toggleAddModal}>افزودن محصول جدید</Button>
             </Col>
           </Row>
           <Card>

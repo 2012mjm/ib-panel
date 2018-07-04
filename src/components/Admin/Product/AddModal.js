@@ -4,11 +4,19 @@ import { Modal, Button } from 'antd'
 import { notifySuccess, notifyError } from '../../../lib/notification'
 import { errorHandler } from '../../../lib/utils'
 import { addProductThunk } from '../../../thunks/product'
-import Former from './Former'
+import FormerInfo from './FormerInfo'
+import FormerPhoto from './FormerPhoto'
 
 class AddModal extends React.Component {
   constructor (props) {
     super(props)
+    this.state = {
+      showInfoForm: true,
+      showPhotoForm: false,
+      productId: null,
+      modalTitle: 'افزودن محصول جدید',
+      footerButton: 'انصراف',
+    }
     this.create = this.create.bind(this)
   }
 
@@ -19,8 +27,14 @@ class AddModal extends React.Component {
 
       this.props.dispatch(addProductThunk(values)).then(res => {
         notifySuccess('محصول جدید با موفقیت ثبت شد.')
+        this.setState({
+          showInfoForm: false,
+          showPhotoForm: true,
+          productId: res.id,
+          modalTitle: 'افزودن تصاویر محصول',
+          footerButton: 'بستن'
+        })
         this.props.reloadList()
-        this.props.viewer(false)
         form.resetFields()
         return true
       }).catch(e => {
@@ -31,13 +45,16 @@ class AddModal extends React.Component {
   }
 
   render () {
+    const { showInfoForm, showPhotoForm, productId, modalTitle, footerButton } = this.state
     return (
       <Modal
-        title="ساخت محصول جدید"
+        destroyOnClose
+        title={modalTitle}
         visible={this.props.show}
         onCancel={() => this.props.viewer(false)}
-        footer={<Button onClick={() => this.props.viewer(false)}>لغو</Button>}>
-          <Former onSubmit={this.create} dispatch={this.props.dispatch} />
+        footer={<Button onClick={() => this.props.viewer(false)}>{footerButton}</Button>}>
+          {showInfoForm && <FormerInfo onSubmit={this.create} dispatch={this.props.dispatch} />}
+          {showPhotoForm && <FormerPhoto productId={productId} />}
       </Modal>
     )
   }
