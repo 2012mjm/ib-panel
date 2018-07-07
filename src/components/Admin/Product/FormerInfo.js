@@ -142,7 +142,6 @@ FormerInfo.defaultProps = {
   product: {
     id: null,
     product_id: null,
-    product_id: null,
     name_fa: '',
     name_en: '',
     description_fa: '',

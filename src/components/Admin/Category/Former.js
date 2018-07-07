@@ -4,10 +4,6 @@ import { Form, Button, Input, Upload, Icon } from 'antd'
 import TreeSelector from './TreeSelector'
 
 class Former extends Component {
-  constructor (props) {
-    super(props)
-  }
-
   render () {
     const FormItem = Form.Item
     const { getFieldDecorator } = this.props.form

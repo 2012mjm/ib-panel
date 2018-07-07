@@ -2,10 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 class ListItem extends React.Component {
-    constructor (props) {
-      super(props)
-    }
-  
     render () {
       const { title, value } = this.props
       return (

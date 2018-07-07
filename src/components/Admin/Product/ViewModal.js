@@ -5,10 +5,6 @@ import ListItem from '../../common/ListItem'
 import FormerPhoto from './FormerPhoto'
 
 class ViewModal extends React.Component {
-  constructor (props) {
-    super(props)
-  }
-
   render () {
     const { product } = this.props
     const TabPane = Tabs.TabPane

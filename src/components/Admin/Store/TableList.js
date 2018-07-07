@@ -1,5 +1,5 @@
 import React from 'react'
-import {Table, Icon} from 'antd'
+import {Table} from 'antd'
 import PropTypes from 'prop-types'
 import moment from 'moment-jalaali'
 moment.loadPersian([{usePersianDigits: true, dialect: 'persian-modern'}])
