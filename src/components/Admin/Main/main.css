@@ -134,3 +134,21 @@
   left: 50%;
   right: auto;
 }
+.ant-popover {
+  right: auto;
+}
+.ant-popover-placement-topLeft > .ant-popover-content > .ant-popover-arrow {
+  left: 10px;
+  right: auto;
+}
+.ant-div-item-control {
+  padding-right: 15px;
+  font-weight: 600;
+}
+.ant-tabs {
+  direction: ltr;
+}
+.ant-tabs-bar,
+.ant-tabs-tabpane {
+  direction: rtl;
+}

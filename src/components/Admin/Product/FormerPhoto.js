@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Upload, Icon, Modal } from 'antd'
+import { deleteProductPhotoThunk } from '../../../thunks/product'
 import { connect } from 'react-redux'
 import { API_URL } from '../../../lib/constants'
+import { notifySuccess, notifyError } from '../../../lib/notification'
+import { errorHandler } from '../../../lib/utils'
 
 class FormerPhoto extends Component {
   constructor (props) {
@@ -11,6 +14,18 @@ class FormerPhoto extends Component {
       previewVisible: false,
       previewImage: '',
       fileList: []
+    }
+  }
+
+  componentDidMount = () => {
+    if(this.props.images !== undefined && this.props.images.length > 0) {
+      this.setState({fileList: this.props.images.map(image => ({
+        uid: image.id,
+        status: 'done',
+        name: image.name,
+        url: image.path,
+        response: {id: image.id}
+      }))})
     }
   }
 
@@ -24,10 +39,19 @@ class FormerPhoto extends Component {
   }
 
   handleRemove = (file) => {
-    console.log('handleRemove', file)
+    this.props.dispatch(deleteProductPhotoThunk(file.response.id)).then(res => {
+      notifySuccess(res.messages[0])
+      return true
+    }).catch(e => {
+      notifyError(errorHandler(e))
+      return false
+    })
   }
 
-  handleChange = ({fileList}) => {
+  handleChange = ({fileList, file}) => {
+    if(file !== undefined && file.response !== undefined && file.response.messages !== undefined) {
+      notifySuccess(file.response.messages[0])
+    }
     this.setState({ fileList })
   }
 
@@ -38,7 +62,6 @@ class FormerPhoto extends Component {
         <div className="ant-upload-text">تصویر</div>
       </div>
     )
-    const { product } = this.props
     const { previewVisible, previewImage, fileList } = this.state;
     return (
       <div className="clearfix">
@@ -52,7 +75,7 @@ class FormerPhoto extends Component {
           fileList={fileList}
           onPreview={this.handlePreview}
           onChange={this.handleChange}
-          onRemove={this.onRemove}
+          onRemove={this.handleRemove}
         >
           {fileList.length > 5 ? null : uploadButton}
         </Upload>
@@ -66,6 +89,8 @@ class FormerPhoto extends Component {
 
 FormerPhoto.propTypes = {
   productId: PropTypes.number,
+  images: PropTypes.array,
+  dispatch: PropTypes.func,
 }
 
 function mapStateToProps (state) {

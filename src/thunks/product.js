@@ -46,10 +46,39 @@ export function addProductThunk (values) {
   }
 }
 
+export function infoProductThunk (id) {
+  return (dispatch, getState) => {
+    dispatch(ajaxActions.isLoading(true))
+    return axios.get(`${API_URL}product/info-panel?id=${id}`).then((res) => {
+
+      dispatch(productActions.setCurrentProduct(res.data))
+      dispatch(ajaxActions.isLoading(false))
+      return res.data
+    }).catch((e) => {
+      dispatch(ajaxActions.isLoading(false))
+      throw e
+    })
+  }
+}
+
 export function deleteProductThunk (id) {
   return (dispatch, getState) => {
     dispatch(ajaxActions.isLoading(true))
     return axios.delete(`${API_URL}product?id=${id}`).then((res) => {
+
+      dispatch(ajaxActions.isLoading(false))
+      return res.data
+    }).catch((e) => {
+      dispatch(ajaxActions.isLoading(false))
+      throw e
+    })
+  }
+}
+
+export function deleteProductPhotoThunk (id) {
+  return (dispatch, getState) => {
+    dispatch(ajaxActions.isLoading(true))
+    return axios.delete(`${API_URL}product/photo?id=${id}`).then((res) => {
 
       dispatch(ajaxActions.isLoading(false))
       return res.data

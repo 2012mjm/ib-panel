@@ -1,5 +1,5 @@
 import React from 'react'
-import {Table, Icon} from 'antd'
+import {Table, Icon, Popconfirm} from 'antd'
 import PropTypes from 'prop-types'
 import moment from 'moment-jalaali'
 moment.loadPersian([{usePersianDigits: true, dialect: 'persian-modern'}])
@@ -44,13 +44,16 @@ class TableList extends React.Component {
         key: 'createdAt',
         render: (value, record) => moment(value).locale('fa').format('jD jMMMM jYY (H:mm)')
       },
-      // { title: 'عملیات',
-      //   key: 'operations',
-      //   render: (text, record) => (<div>
-      //     <a onClick={() => this.props.viewer(true, record)}><Icon type="edit" style={{ fontSize: 17 }} /></a>
-      //     <a onClick={() => this.props.viewer(true, record)}><Icon type="delete" style={{ fontSize: 17 }} /></a>
-      //   </div>)
-      // }
+      { title: 'عملیات',
+        key: 'operations',
+        render: (text, record) => (<div>
+          <a onClick={() => this.props.viewer(true, record)}><Icon type="eye" style={{ fontSize: 17 }} /></a>{' '}
+          <a onClick={() => this.props.editor(true, record)}><Icon type="edit" style={{ fontSize: 17 }} /></a>{' '}
+          <Popconfirm title="اطمینان به حذف این محصول دارید؟" okText="بله" cancelText="خیر" placement="topLeft" onConfirm={() => this.props.delete(record.id)}>
+            <a><Icon type="delete" style={{ fontSize: 17 }} /></a>
+          </Popconfirm>
+        </div>)
+      }
     ]
     return (
       <Table dataSource={list} rowKey={record => record.id} columns={columns} loading={loading} />
@@ -61,7 +64,8 @@ class TableList extends React.Component {
 TableList.propTypes = {
   dataSource: PropTypes.array,
   loading: PropTypes.bool,
-  viewer: PropTypes.func
+  viewer: PropTypes.func,
+  editor: PropTypes.func,
 }
 
 export default TableList
