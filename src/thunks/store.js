@@ -30,7 +30,7 @@ export function storeSignupThunk (data) {
 export function storeThunk (page=1, count=10) {
   return (dispatch, getState) => {
     dispatch(ajaxActions.isLoading(true))
-    return axios.get(`${API_URL}store/list-panel?page=${page}&count=${count}`).then((res) => {
+    return axios.get(`${API_URL}stores/panel?page=${page}&count=${count}`).then((res) => {
 
       dispatch(ajaxActions.isLoading(false))
       dispatch(storeActions.setStoreList(res.data))

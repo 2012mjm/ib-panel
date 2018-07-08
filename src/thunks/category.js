@@ -6,7 +6,7 @@ import axios from 'axios'
 export function categoryThunk () {
   return (dispatch, getState) => {
     dispatch(ajaxActions.isLoading(true))
-    return axios.get(`${API_URL}category`).then((res) => {
+    return axios.get(`${API_URL}categories`).then((res) => {
 
       dispatch(ajaxActions.isLoading(false))
       dispatch(categoryActions.setCategoryList(res.data))

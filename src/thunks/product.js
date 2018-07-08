@@ -6,7 +6,7 @@ import axios from 'axios'
 export function productThunk () {
   return (dispatch, getState) => {
     dispatch(ajaxActions.isLoading(true))
-    return axios.get(`${API_URL}product/list-panel`).then((res) => {
+    return axios.get(`${API_URL}products/panel`).then((res) => {
 
       dispatch(ajaxActions.isLoading(false))
       dispatch(productActions.setProductList(res.data))
@@ -49,7 +49,7 @@ export function addProductThunk (values) {
 export function infoProductThunk (id) {
   return (dispatch, getState) => {
     dispatch(ajaxActions.isLoading(true))
-    return axios.get(`${API_URL}product/info-panel?id=${id}`).then((res) => {
+    return axios.get(`${API_URL}product/panel?id=${id}`).then((res) => {
 
       dispatch(productActions.setCurrentProduct(res.data))
       dispatch(ajaxActions.isLoading(false))
