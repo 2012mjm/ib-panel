@@ -62,7 +62,7 @@ class Former extends Component {
         </FormItem>
         {category.photo && <FormItem label="تصویر فعلی" {...formItemLayout}>
           {getFieldDecorator('default_photo')(
-            <img className="default-photo" src={category.photo} alt="" />
+            <img className="default-photo" src={category.image} alt="" />
           )}
         </FormItem>}
         <FormItem {...tailFormItemLayout}>

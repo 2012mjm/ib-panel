@@ -18,8 +18,8 @@ class ViewModal extends React.Component {
           {product.id !== undefined &&
             <Tabs defaultActiveKey="1">
               <TabPane tab={<span><Icon type="shopping-cart" />جزئیات محصول</span>} key="1">
-                <ListItem title="فروشگاه" value={`${product.store.fa} (${product.store.en || '-'})`} />
-                <ListItem title="دسته" value={`${product.category.fa} (${product.category.en || '-'})`} />
+                <ListItem title="فروشگاه" value={`${product.store} (${product.store.title.fa || '-'})`} />
+                <ListItem title="دسته" value={`${product.category} (${product.category.title.fa || '-'})`} />
                 <ListItem title="عنوان" value={`${product.title.fa} (${product.title.en || '-'})`} />
                 
                 <ListItem title="قیمت" value={product.price.toString()} />
@@ -28,7 +28,7 @@ class ViewModal extends React.Component {
                 <ListItem title="ستاره" value={product.rate.toString()} />
                 <ListItem title="وزن" value={product.weight && product.weight.toString()} />
                 <ListItem title="وضعیت" value={product.status} />
-                <ListItem title="دلیل رد" value={product.rejectReason} />
+                <ListItem title="دلیل رد" value={product.reasonRejected} />
                 
                 <ListItem title="توضیح (فارسی)" value={product.description.fa} />
                 <ListItem title="توضیح (انگلیسی)" value={product.description.en} />
