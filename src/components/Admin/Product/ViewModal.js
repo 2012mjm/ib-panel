@@ -25,7 +25,7 @@ class ViewModal extends React.Component {
                 <ListItem title="قیمت" value={product.price.toString()} />
                 <ListItem title="تخفیف" value={product.discount && product.discount.toString()} />
                 <ListItem title="موجودی" value={product.quantity && product.quantity.toString()} />
-                <ListItem title="ستاره" value={product.star.toString()} />
+                <ListItem title="ستاره" value={product.rate.toString()} />
                 <ListItem title="وزن" value={product.weight && product.weight.toString()} />
                 <ListItem title="وضعیت" value={product.status} />
                 <ListItem title="دلیل رد" value={product.rejectReason} />
