@@ -46,6 +46,10 @@ class SideMenu extends Component {
             <Icon type="exception" />
             <span className="menu">سفارشات</span>
           </Menu.Item>
+          <Menu.Item key="/admin/customer">
+            <Icon type="user" />
+            <span className="menu">مشتری‌ها</span>
+          </Menu.Item>
         </Menu>
       </Sider>
     )

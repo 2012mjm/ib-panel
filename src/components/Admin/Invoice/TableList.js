@@ -1,5 +1,5 @@
 import React from 'react'
-import {Table, Badge} from 'antd'
+import {Table, Badge, Icon} from 'antd'
 import PropTypes from 'prop-types'
 import { INVOICE_STATUS } from '../../../lib/constants'
 import moment from 'moment-jalaali'
@@ -38,6 +38,12 @@ class TableList extends React.Component {
         key: 'createdAt',
         render: (value, record) => moment(value).locale('fa').format('jD jMMMM jYY (H:mm)')
       },
+      { title: 'عملیات',
+        key: 'operations',
+        render: (text, record) => (<div>
+          <a onClick={() => this.props.viewer(true, record)}><Icon type="eye" style={{ fontSize: 17 }} /></a>{' '}
+        </div>)
+      }
     ]
     return (
       <Table dataSource={list} rowKey={record => record.id} columns={columns} loading={loading} />
