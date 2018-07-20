@@ -8,6 +8,7 @@ import SideMenu from '../SideMenu/SideMenu'
 import CategoryScreen from '../Category/Screen'
 import StoreScreen from '../Store/Screen'
 import ProductScreen from '../Product/Screen'
+import InvoiceScreen from '../Invoice/Screen'
 
 class MainScreen extends Component {
   constructor (props) {
@@ -50,6 +51,7 @@ class MainScreen extends Component {
               <Route path="/admin/category" component={CategoryScreen} />
               <Route path="/admin/store" component={StoreScreen} />
               <Route path="/admin/product" component={ProductScreen} />
+              <Route path="/admin/invoice" component={InvoiceScreen} />
             </Switch>
             <div className="globalFooter">
               <div className="copyright">

@@ -42,6 +42,10 @@ class SideMenu extends Component {
             <Icon type="profile" />
             <span className="menu">دسته‌بندی‌ها</span>
           </Menu.Item>
+          <Menu.Item key="/admin/invoice">
+            <Icon type="exception" />
+            <span className="menu">سفارشات</span>
+          </Menu.Item>
         </Menu>
       </Sider>
     )

@@ -3,9 +3,8 @@ import authReducer from './authReducer'
 import categoryReducer from './categoryReducer'
 import storeReducer from './storeReducer'
 import productReducer from './productReducer'
+import invoiceReducer from './invoiceReducer'
 
-// import { routerReducer } from 'react-router-redux'
-// import { reducer as searchReducer } from 'redux-search'
 import { combineReducers } from 'redux'
 
 export default combineReducers({
@@ -13,5 +12,6 @@ export default combineReducers({
   auth: authReducer,
   category: categoryReducer,
   store: storeReducer,
-  product: productReducer
+  product: productReducer,
+  invoice: invoiceReducer,
 })
