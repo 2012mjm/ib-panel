@@ -50,6 +50,10 @@ class SideMenu extends Component {
             <Icon type="user" />
             <span className="menu">مشتری‌ها</span>
           </Menu.Item>
+          <Menu.Item key="/admin/attribute">
+            <Icon type="user" />
+            <span className="menu">خواص محصول</span>
+          </Menu.Item>
         </Menu>
       </Sider>
     )
