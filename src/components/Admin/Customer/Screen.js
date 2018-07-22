@@ -2,8 +2,6 @@ import React from 'react'
 import { Card, Layout, Row, Col, Button } from 'antd'
 import { connect } from 'react-redux'
 import { customerThunk } from '../../../thunks/customer'
-import { notifySuccess, notifyError } from '../../../lib/notification'
-import { errorHandler } from '../../../lib/utils'
 import AddModal from './AddModal'
 import EditModal from './EditModal'
 import TableList from './TableList'
@@ -16,7 +14,6 @@ class Screen extends React.Component {
       isAddModalVisible: false,
       isEditModalVisible: false,
       list: [],
-      customerValues: {},
       customerEditValues: {}
     }
     this.toggleAddModal     = this.toggleAddModal.bind(this)
@@ -56,7 +53,7 @@ class Screen extends React.Component {
   }
 
   render () {
-    const { list, loading, isAddModalVisible, isEditModalVisible, customerValues, customerEditValues } = this.state
+    const { list, loading, isAddModalVisible, isEditModalVisible, customerEditValues } = this.state
     return (
       <Layout>
         <AddModal show={isAddModalVisible} viewer={this.toggleAddModal} dispatch={this.props.dispatch} reloadList={this.getCustomerList} />

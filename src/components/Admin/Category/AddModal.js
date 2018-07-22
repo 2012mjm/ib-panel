@@ -3,13 +3,22 @@ import PropTypes from 'prop-types'
 import { Modal, Button } from 'antd'
 import { notifySuccess, notifyError } from '../../../lib/notification'
 import { errorHandler } from '../../../lib/utils'
-import { addCategoryThunk } from '../../../thunks/category'
-import Former from './Former'
+import { addCategoryThunk, addCategoryAttributeThunk } from '../../../thunks/category'
+import FormerInfo from './FormerInfo'
+import FormerAttribute from './FormerAttribute'
 
 class AddModal extends React.Component {
   constructor (props) {
     super(props)
+    this.state = {
+      showInfoForm: true,
+      showAttributeForm: false,
+      categoryId: null,
+      modalTitle: 'افزودن دسته جدید',
+      footerButton: 'انصراف',
+    }
     this.create = this.create.bind(this)
+    this.addAttribute = this.addAttribute.bind(this)
   }
 
   create = (e, form, id=null) => {
@@ -26,8 +35,14 @@ class AddModal extends React.Component {
 
       this.props.dispatch(addCategoryThunk(data)).then(res => {
         notifySuccess('دسته جدید با موفقیت ثبت شد.')
+        this.setState({
+          showInfoForm: false,
+          showAttributeForm: true,
+          categoryId: res.id,
+          modalTitle: 'افزودن خواص جدید',
+          footerButton: 'بستن'
+        })
         this.props.reloadList()
-        this.props.viewer(false)
         form.resetFields()
         return true
       }).catch(e => {
@@ -37,15 +52,57 @@ class AddModal extends React.Component {
     })
   }
 
+  addAttribute = (e, form, categoryId) => {
+    e.preventDefault()
+    form.validateFields((err, values) => {
+      if (err) return undefined
+
+      values.category_id = categoryId
+      values.is_required = (values.is_required === false) ? 0 : 1
+      values.is_multiple = (values.is_multiple === false) ? 0 : 1
+
+      this.props.dispatch(addCategoryAttributeThunk(values)).then(res => {
+        notifySuccess('خواص جدید با موفقیت ثبت شد.')
+        this.setState({
+          modalTitle: 'افزودن خواص جدید دیگر',
+          footerButton: 'اتمام و بستن',
+          showAttributeForm: false
+        }, (nextState) => {
+          this.setState({showAttributeForm: true})
+        })
+        return true
+      }).catch(e => {
+        notifyError(errorHandler(e))
+        return false
+      })
+    })
+  }
+
+  componentWillReceiveProps = (props) => {
+    if(props.show && this.state.categoryId === null) {
+      this.setState({
+        showInfoForm: true,
+        showAttributeForm: false,
+        modalTitle: 'افزودن دسته جدید',
+        footerButton: 'انصراف',
+      })
+    }
+    else if(!props.show) {
+      this.setState({categoryId: null})
+    }
+  }
+
   render () {
+    const { showInfoForm, showAttributeForm, categoryId, modalTitle, footerButton } = this.state
     return (
       <Modal
         destroyOnClose
-        title="افزودن دسته جدید"
+        title={modalTitle}
         visible={this.props.show}
         onCancel={() => this.props.viewer(false)}
-        footer={<Button onClick={() => this.props.viewer(false)}>لغو</Button>}>
-          <Former onSubmit={this.create} dispatch={this.props.dispatch} categoryList={this.props.categoryList} />
+        footer={<Button onClick={() => this.props.viewer(false)}>{footerButton}</Button>}>
+          {showInfoForm && <FormerInfo onSubmit={this.create} dispatch={this.props.dispatch} categoryList={this.props.categoryList} />}
+          {showAttributeForm && <FormerAttribute onSubmit={this.addAttribute} categoryId={categoryId} />}
       </Modal>
     )
   }

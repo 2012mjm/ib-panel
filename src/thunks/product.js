@@ -3,10 +3,10 @@ import * as ajaxActions from '../actions/ajax'
 import { API_URL } from '../lib/constants'
 import axios from 'axios'
 
-export function productThunk () {
+export function productThunk (page=1, count=10) {
   return (dispatch, getState) => {
     dispatch(ajaxActions.isLoading(true))
-    return axios.get(`${API_URL}products/panel`).then((res) => {
+    return axios.get(`${API_URL}products/panel?page=${page}&count=${count}`).then((res) => {
 
       dispatch(ajaxActions.isLoading(false))
       dispatch(productActions.setProductList(res.data))
@@ -79,6 +79,20 @@ export function deleteProductPhotoThunk (id) {
   return (dispatch, getState) => {
     dispatch(ajaxActions.isLoading(true))
     return axios.delete(`${API_URL}product/photo?id=${id}`).then((res) => {
+
+      dispatch(ajaxActions.isLoading(false))
+      return res.data
+    }).catch((e) => {
+      dispatch(ajaxActions.isLoading(false))
+      throw e
+    })
+  }
+}
+
+export function addProductAttributeThunk (values) {
+  return (dispatch, getState) => {
+    dispatch(ajaxActions.isLoading(true))
+    return axios.post(`${API_URL}product/attribute`, values).then((res) => {
 
       dispatch(ajaxActions.isLoading(false))
       return res.data

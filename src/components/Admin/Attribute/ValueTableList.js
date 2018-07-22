@@ -1,5 +1,5 @@
 import React from 'react'
-import {Table, Popconfirm} from 'antd'
+import {Table} from 'antd'
 import PropTypes from 'prop-types'
 
 class ValueTableList extends React.Component {

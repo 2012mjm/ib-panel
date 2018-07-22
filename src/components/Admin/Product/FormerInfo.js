@@ -18,7 +18,7 @@ class FormerInfo extends Component {
         <FormItem label="فروشگاه" {...formItemLayout}>
           {getFieldDecorator('store_id', {
             rules: [{required: true, message: 'این فیلد الزامی است!'}],
-            initialValue: (product.store_id) && product.store_id.toString()
+            initialValue: (product.store) && product.store.id.toString()
           })(
             <StoreAutoComplete afterSelect={(selected) => {
               this.props.form.setFieldsValue({store_id: selected.id})
@@ -28,7 +28,7 @@ class FormerInfo extends Component {
         <FormItem label="دسته" {...formItemLayout}>
           {getFieldDecorator('category_id', {
             rules: [{required: true, message: 'این فیلد الزامی است!'}],
-            initialValue: (product.category_id) && product.category_id.toString()
+            initialValue: (product.category) && product.category.id.toString()
           })(
             <CategorySelector
               placeholder=""
@@ -118,18 +118,18 @@ class FormerInfo extends Component {
 
 const formItemLayout = {
   labelCol: {
-    xs: 8
+    xs: 9
   },
   wrapperCol: {
-    xs: 16
+    xs: 10
   }
 }
 
 const tailFormItemLayout = {
   wrapperCol: {
     xs: {
-      span: 16,
-      offset: 8
+      offset: 9,
+      span: 10,
     }
   }
 }

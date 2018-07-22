@@ -4,7 +4,7 @@ import { Modal, Button } from 'antd'
 import { notifySuccess, notifyError } from '../../../lib/notification'
 import { errorHandler } from '../../../lib/utils'
 import { updateCategoryThunk, deleteCategoryThunk } from '../../../thunks/category'
-import Former from './Former'
+import FormerInfo from './FormerInfo'
 
 class EditModal extends React.Component {
   constructor (props) {
@@ -62,7 +62,7 @@ class EditModal extends React.Component {
           <Button onClick={() => this.props.viewer(false)}>لغو</Button>
           <Button type="danger" onClick={() => this.delete(category.id)}>حذف دسته</Button>
         </div>}>
-        <Former onSubmit={this.update} dispatch={this.props.dispatch} category={category} />
+        <FormerInfo onSubmit={this.update} dispatch={this.props.dispatch} category={category} />
       </Modal>
     )
   }

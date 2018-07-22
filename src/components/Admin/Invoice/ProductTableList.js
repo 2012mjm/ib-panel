@@ -1,5 +1,5 @@
 import React from 'react'
-import {Table, Badge} from 'antd'
+import {Table} from 'antd'
 import PropTypes from 'prop-types'
 
 class ProductTableList extends React.Component {

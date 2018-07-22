@@ -1,4 +1,3 @@
-import * as authActions from '../actions/auth'
 import * as ajaxActions from '../actions/ajax'
 import * as invoiceActions from '../actions/invoice'
 import { API_URL } from '../lib/constants'

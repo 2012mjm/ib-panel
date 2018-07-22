@@ -16,20 +16,27 @@ class TableList extends React.Component {
       { title: 'دسته',
         dataIndex: 'category',
         key: 'category',
-        render: (value, record) => value.fa
+        render: (category, record) => category.title.fa
       },
       { title: 'فروشگاه',
         dataIndex: 'store',
         key: 'store',
-        render: (value, record) => value.fa
+        render: (store, record) => store.title.fa
       },
       { title: 'قیمت',
         dataIndex: 'price',
-        key: 'price'
-      },
-      { title: 'تخفیف',
-        dataIndex: 'discount',
-        key: 'discount'
+        key: 'price',
+        render: (price, record) => {
+          price = `${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} تومان`
+          if(record.discount) {
+            return <div>
+              <span style={{textDecoration: 'line-through', color: 'silver'}}>${price}</span>
+              <br />
+              {(record.price - record.discount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} تومان
+            </div>
+          }
+          return price
+        }
       },
       { title: 'موجودی',
         dataIndex: 'quantity',

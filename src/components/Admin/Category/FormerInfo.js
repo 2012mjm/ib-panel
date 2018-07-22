@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Form, Button, Input, Upload, Icon } from 'antd'
 import TreeSelector from './TreeSelector'
 
-class Former extends Component {
+class FormerInfo extends Component {
   render () {
     const FormItem = Form.Item
     const { getFieldDecorator } = this.props.form
@@ -91,11 +91,11 @@ const tailFormItemLayout = {
   }
 }
 
-Former.propTypes = {
+FormerInfo.propTypes = {
   category: PropTypes.object,
 }
 
-Former.defaultProps = {
+FormerInfo.defaultProps = {
   category: {
     id: null,
     parent_id: '',
@@ -105,4 +105,4 @@ Former.defaultProps = {
   }
 }
 
-export default Form.create()(Former)
+export default Form.create()(FormerInfo)

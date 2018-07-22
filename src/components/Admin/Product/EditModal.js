@@ -36,6 +36,7 @@ class EditModal extends React.Component {
     return (
       <Modal
         destroyOnClose
+        width={800}
         title="ویرایش محصول موردنظر"
         visible={this.props.show}
         onCancel={() => this.props.viewer(false)}
