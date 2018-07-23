@@ -2,6 +2,7 @@ import React from 'react'
 import {Table, Badge, Icon} from 'antd'
 import PropTypes from 'prop-types'
 import { INVOICE_STATUS } from '../../../lib/constants'
+import { priceFormat, statusStyle } from '../../../lib/utils'
 import moment from 'moment-jalaali'
 moment.loadPersian([{usePersianDigits: true, dialect: 'persian-modern'}])
 
@@ -17,17 +18,12 @@ class TableList extends React.Component {
       { title: 'مبلغ',
         dataIndex: 'amount',
         key: 'amount',
-        render: (amount, record) => `${amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} تومان`
+        render: (amount, record) => priceFormat(amount)
       },
       { title: 'وضعیت',
         dataIndex: 'status',
         key: 'status',
-        render: (status, record) => {
-          const text = INVOICE_STATUS[status]
-          if(status === 'pending') return <span><Badge status="default" />{text}</span>
-          else if(status === 'accepted') return <span><Badge status="success" />{text}</span>
-          else if(status === 'rejected') return <span><Badge status="error" />{text}</span>
-        }
+        render: (status, record) => statusStyle(status, INVOICE_STATUS[status])
       },
       { title: 'دلیل رد',
         dataIndex: 'reasonRejected',

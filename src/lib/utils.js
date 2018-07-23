@@ -1,5 +1,7 @@
 /* global FileReader */
+import React from 'react'
 import axios from 'axios'
+import {Tooltip, Badge} from 'antd'
 
 export function setAuthorizationToken (token) {
   if (token) {
@@ -40,4 +42,31 @@ export function getBase64 (file) {
     reader.onload = () => resolve(reader.result)
     reader.onerror = error => reject(error)
   })
+}
+
+export function ellipse (text, maxLength=20, showTooltip=false) {
+  if(!text) return null
+  if(text.length <= maxLength) return text
+
+  const trimmedString = text.substr(0, maxLength)
+  let out = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")))
+
+  if(text.length > out.length) out += ' ...'
+
+  if(showTooltip) {
+    return <Tooltip placement="top" title={text}>{out}</Tooltip>
+  }
+  return out
+}
+
+export function priceFormat (price, unit="تومان") {
+  if(price <= 0) return 0
+  return `${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} تومان`
+}
+
+export function statusStyle (status, text) {
+  if(status === 'pending') return <span><Badge status="default" />{text}</span>
+  if(status === 'accepted') return <span><Badge status="success" />{text}</span>
+  if(status === 'rejected') return <span><Badge status="error" />{text}</span>
+  return text
 }

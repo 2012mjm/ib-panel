@@ -1,6 +1,8 @@
 import React from 'react'
-import {Table, Icon, Popconfirm} from 'antd'
+import {Table, Icon, Popconfirm, Tooltip} from 'antd'
 import PropTypes from 'prop-types'
+import { ellipse, priceFormat, statusStyle } from '../../../lib/utils'
+import { PRODUCT_STATUS } from '../../../lib/constants'
 import moment from 'moment-jalaali'
 moment.loadPersian([{usePersianDigits: true, dialect: 'persian-modern'}])
 
@@ -11,7 +13,7 @@ class TableList extends React.Component {
       { title: 'عنوان',
         dataIndex: 'title',
         key: 'title',
-        render: (value, record) => value.fa
+        render: (value, record) => ellipse(value.fa, 20, true)
       },
       { title: 'دسته',
         dataIndex: 'category',
@@ -27,15 +29,14 @@ class TableList extends React.Component {
         dataIndex: 'price',
         key: 'price',
         render: (price, record) => {
-          price = `${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} تومان`
           if(record.discount) {
             return <div>
-              <span style={{textDecoration: 'line-through', color: 'silver'}}>${price}</span>
+              <span style={{textDecoration: 'line-through', color: 'silver'}}>{priceFormat(price)}</span>
               <br />
-              {(record.price - record.discount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} تومان
+              {priceFormat(price - record.discount)}
             </div>
           }
-          return price
+          return priceFormat(price)
         }
       },
       { title: 'موجودی',
@@ -44,7 +45,8 @@ class TableList extends React.Component {
       },
       { title: 'وضعیت',
         dataIndex: 'status',
-        key: 'status'
+        key: 'status',
+        render: (status, record) => statusStyle(status, PRODUCT_STATUS[status])
       },
       { title: 'تاریخ ایجاد',
         dataIndex: 'createdAt',

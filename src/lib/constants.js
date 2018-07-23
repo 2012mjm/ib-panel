@@ -10,3 +10,10 @@ export const INVOICE_STATUS = {
   'accepted': 'پرداخت شده',
   'rejected': 'رد شده',
 }
+
+export const PRODUCT_STATUS = {
+  'pending': 'در انتظار تایید',
+  'accepted': 'تایید شده',
+  'rejected': 'رد شده',
+  'deleted': 'حذف شده',
+}
