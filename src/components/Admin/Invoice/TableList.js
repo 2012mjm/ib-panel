@@ -1,5 +1,5 @@
 import React from 'react'
-import {Table, Badge, Icon} from 'antd'
+import {Table, Icon} from 'antd'
 import PropTypes from 'prop-types'
 import { INVOICE_STATUS } from '../../../lib/constants'
 import { priceFormat, statusStyle } from '../../../lib/utils'

@@ -9,7 +9,8 @@ export default createReducer({
     mobile: payload.mobile,
     username: payload.username,
     storeName: payload.store_name,
-    isAdmin: payload.isAdmin
+    isAdmin: payload.isAdmin,
+    role: payload.role
   }),
   [authActions.logout]: (state) => {
     window.localStorage.removeItem('auth')
@@ -26,5 +27,6 @@ export default createReducer({
   username: null,
   currentUser: null,
   storeName: null,
-  isAdmin: false
+  isAdmin: false,
+  role: null
 })

@@ -34,7 +34,8 @@ class MainScreen extends Component {
       </Menu>
     )
     if (history.location.pathname === '/admin/login') { return <span /> }
-    if (auth.isAuthenticated && !auth.isAdmin) { history.replace('/store') }
+    if (auth.isAuthenticated && auth.role === 'store') { history.replace('/store') }
+    if (auth.isAuthenticated && auth.role === 'customer') { history.replace('/customer') }
     return (
       <Layout className="container">
         <SideMenu collapsedMenu={false} {...this.props} />
@@ -64,7 +65,7 @@ class MainScreen extends Component {
             </div>
           </Content>
         </Layout>
-        {!auth.isAuthenticated && (history.location.pathname === '/admin') && <Redirect to="/admin/login" />}
+        {!auth.isAuthenticated && (history.location.pathname.indexOf('/admin') !== -1) && <Redirect to="/admin/login" />}
       </Layout>
     )
   }

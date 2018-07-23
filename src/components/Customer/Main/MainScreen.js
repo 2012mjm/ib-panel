@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-import {Route, Switch, Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import './main.css'
 import { Layout, Dropdown, Avatar, Menu, Icon } from 'antd'
 import { connect } from 'react-redux'
 import { logout } from '../../../actions/auth'
 import SideMenu from '../SideMenu/SideMenu'
-import ProductScreen from '../Product/Screen'
-import ProfileScreen from '../Profile/Screen'
 
 class MainStoreScreen extends Component {
   constructor (props) {
@@ -17,7 +15,7 @@ class MainStoreScreen extends Component {
   handleMenuClick ({ key }) {
     if (key === 'logout') {
       this.props.dispatch(logout())
-      this.props.history.push('/store/account')
+      this.props.history.push('/customer/login')
     }
   }
 
@@ -29,9 +27,9 @@ class MainStoreScreen extends Component {
         <Menu.Item key="logout"><span>خروج</span><Icon type="logout" /></Menu.Item>
       </Menu>
     )
-    if (history.location.pathname === '/store/account') { return <span /> }
+    if (history.location.pathname === '/customer/login') { return <span /> }
     if (auth.isAuthenticated && auth.role === 'manager') { history.replace('/admin') }
-    if (auth.isAuthenticated && auth.role === 'customer') { history.replace('/customer') }
+    if (auth.isAuthenticated && auth.role === 'store') { history.replace('/store') }
     return (
       <Layout className="container">
         <SideMenu collapsedMenu={false} {...this.props} />
@@ -40,16 +38,12 @@ class MainStoreScreen extends Component {
             <div className="left">
               <Dropdown overlay={menu}>
                 <span className="action account">
-                  {auth.isAuthenticated && <span>{auth.mobile}</span>} <Avatar size="small" className="avatar" src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png" />
+                  {auth.isAuthenticated && <span>{`${auth.storeOwner || auth.mobile} [${auth.storeName}]`}</span>} <Avatar size="small" className="avatar" src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png" />
                 </span>
               </Dropdown>
             </div>
           </Header>
           <Content className="main-content">
-            <Switch>
-              <Route path="/store/product" component={ProductScreen} />
-              <Route path="/store/profile" component={ProfileScreen} />
-            </Switch>
             <div className="globalFooter">
               <div className="copyright">
                 <Icon type="copyright" /> کلیه حقوق محفوظ است
@@ -58,7 +52,7 @@ class MainStoreScreen extends Component {
           </Content>
         </Layout>
 
-        {!auth.isAuthenticated && (history.location.pathname.indexOf('/store') !== -1) && <Redirect to="/store/account" />}
+        {!auth.isAuthenticated && (history.location.pathname.indexOf('/customer') !== -1) && <Redirect to="/customer/login" />}
       </Layout>
     )
   }

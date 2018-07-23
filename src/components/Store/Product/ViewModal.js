@@ -20,7 +20,6 @@ class ViewModal extends React.Component {
           {product.id !== undefined &&
             <Tabs defaultActiveKey="1">
               <TabPane tab={<span><Icon type="shopping-cart" />جزئیات محصول</span>} key="1">
-                <ListItem title="فروشگاه" value={`${product.store.title.fa} (${product.store.title.en || '-'})`} />
                 <ListItem title="دسته" value={`${product.category.title.fa} (${product.category.title.en || '-'})`} />
                 <ListItem title="عنوان" value={`${product.title.fa} (${product.title.en || '-'})`} />
                 

@@ -7,14 +7,15 @@ class SideMenu extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      current: null
+      current: null,
+      collapsed: false,
     }
     this.onCollapse = this.onCollapse.bind(this)
     this.handleClick = this.handleClick.bind(this)
   }
 
   onCollapse (collapsed) {
-    // Actions.toggleMenu(collapsed)
+    this.setState({ collapsed })
   }
 
   handleClick (e) {
@@ -25,7 +26,7 @@ class SideMenu extends Component {
     const { Sider } = Layout
     // const { SubMenu } = Menu
     return (
-      <Sider collapsible collapsed={this.props.collapsedMenu} onCollapse={() => console.log('')}>
+      <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
         <div className="logo" >
           {/* <img src={logo} alt="logo" height="39" width="97" className="logoimg" /> */}
         </div>

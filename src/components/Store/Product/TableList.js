@@ -20,11 +20,6 @@ class TableList extends React.Component {
         key: 'category',
         render: (category, record) => category.title.fa
       },
-      { title: 'فروشگاه',
-        dataIndex: 'store',
-        key: 'store',
-        render: (store, record) => store.title.fa
-      },
       { title: 'قیمت',
         dataIndex: 'price',
         key: 'price',

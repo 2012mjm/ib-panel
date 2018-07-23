@@ -10,7 +10,7 @@ class SignupForm extends Component {
       <Form className="signup-form" onSubmit={(e) => this.props.onSubmit(e, this.props.form)}>
 
         <FormItem>
-          {getFieldDecorator('store_name', {
+          {getFieldDecorator('store_name_fa', {
             rules: [{required: true, message: 'این فیلد الزامی است'}]
           })(
             <Input prefix={<Icon type="shop" style={{color: 'rgba(0,0,0,0.25)'}} />} placeholder="نام فروشگاه" />

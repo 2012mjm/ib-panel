@@ -24,11 +24,11 @@ class LoginScreen extends Component {
 
       this.props.dispatch(storeLoginThunk(values)).then((res) => {
         notifySuccess('ورود با موفقیت انجام شد')
-        if(res.isAdmin) this.props.history.push('/admin')
-        else this.props.history.push('/store')
-        return false
+        this.props.history.push('/store')
+        return true
       }).catch((e) => {
         notifyError(errorHandler(e))
+        return false
       })
     })
   }

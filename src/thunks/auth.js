@@ -11,7 +11,7 @@ export function storeLoginThunk (userData) {
     return axios.post(`${API_URL}store/login`, userData).then((res) => {
       
       const tokenDecode = jwt.decode(res.data.token)
-      res.data.isAdmin = tokenDecode.isAdmin
+      res.data.role = tokenDecode.role
 
       dispatch(ajaxActions.isLoading(false))
       dispatch(authActions.loggedIn(res.data))
@@ -32,7 +32,7 @@ export function managerLoginThunk (userData) {
     return axios.post(`${API_URL}manager/login`, userData).then((res) => {
       
       const tokenDecode = jwt.decode(res.data.token)
-      res.data.isAdmin = tokenDecode.isAdmin
+      res.data.role = tokenDecode.role
 
       dispatch(ajaxActions.isLoading(false))
       dispatch(authActions.loggedIn(res.data))
@@ -60,6 +60,41 @@ export function getCurrentUserThunk () {
       // })
       dispatch(authActions.setCurrentUser(res.data.data))
       return res.data.data
+    }).catch((e) => {
+      dispatch(ajaxActions.isLoading(false))
+      throw e
+    })
+  }
+}
+
+export function customerLoginThunk (userData) {
+  return (dispatch, getState) => {
+    dispatch(ajaxActions.isLoading(true))
+    return axios.post(`${API_URL}customer/login`, userData).then((res) => {
+
+      dispatch(ajaxActions.isLoading(false))
+      return res.data
+    }).catch((e) => {
+      dispatch(ajaxActions.isLoading(false))
+      throw e
+    })
+  }
+}
+
+export function customerVerifyThunk (userData) {
+  return (dispatch, getState) => {
+    dispatch(ajaxActions.isLoading(true))
+    return axios.post(`${API_URL}customer/verify-code`, userData).then((res) => {
+      
+      const tokenDecode = jwt.decode(res.data.token)
+      res.data.role = tokenDecode.role
+
+      dispatch(ajaxActions.isLoading(false))
+      dispatch(authActions.loggedIn(res.data))
+
+      window.localStorage.setItem('auth', JSON.stringify(res.data))
+      setAuthorizationToken(res.data.token)
+      return res.data
     }).catch((e) => {
       dispatch(ajaxActions.isLoading(false))
       throw e

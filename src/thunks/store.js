@@ -83,3 +83,18 @@ export function deleteStoreThunk (id) {
     })
   }
 }
+
+export function infoStoreThunk (id=null) {
+  return (dispatch, getState) => {
+    dispatch(ajaxActions.isLoading(true))
+    return axios.get(`${API_URL}store/panel?id=${id}`).then((res) => {
+
+      dispatch(storeActions.setCurrentStore(res.data))
+      dispatch(ajaxActions.isLoading(false))
+      return res.data
+    }).catch((e) => {
+      dispatch(ajaxActions.isLoading(false))
+      throw e
+    })
+  }
+}
