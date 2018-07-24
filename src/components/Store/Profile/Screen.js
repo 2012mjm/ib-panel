@@ -3,8 +3,6 @@ import { Card, Layout, Row, Col, Button } from 'antd'
 import { connect } from 'react-redux'
 import { infoStoreThunk } from '../../../thunks/store'
 import ListItem from '../../common/ListItem'
-import { notifySuccess, notifyError } from '../../../lib/notification'
-import { errorHandler } from '../../../lib/utils'
 import EditModal from './EditModal'
 
 class Screen extends React.Component {
@@ -46,7 +44,7 @@ class Screen extends React.Component {
   }
 
   render () {
-    const { store, loading, isEditModalVisible } = this.state
+    const { store, isEditModalVisible } = this.state
     return (
       <Layout>
         <EditModal show={isEditModalVisible} viewer={this.toggleEditModal} dispatch={this.props.dispatch} reload={this.getStoreInfo} store={store} />

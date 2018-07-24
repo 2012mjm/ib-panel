@@ -28,8 +28,8 @@ class MainStoreScreen extends Component {
       </Menu>
     )
     if (history.location.pathname === '/customer/login') { return <span /> }
-    if (auth.isAuthenticated && auth.role === 'manager') { history.replace('/admin') }
-    if (auth.isAuthenticated && auth.role === 'store') { history.replace('/store') }
+    if (auth.isAuthenticated && auth.role !== 'customer') { this.handleMenuClick({key: 'logout'}) }
+    if (!auth.isAuthenticated) { this.props.history.push('/customer/login') }
     return (
       <Layout className="container">
         <SideMenu collapsedMenu={false} {...this.props} />
@@ -52,7 +52,7 @@ class MainStoreScreen extends Component {
           </Content>
         </Layout>
 
-        {!auth.isAuthenticated && (history.location.pathname.indexOf('/customer') !== -1) && <Redirect to="/customer/login" />}
+        {!auth.isAuthenticated && <Redirect to="/customer/login" />}
       </Layout>
     )
   }
