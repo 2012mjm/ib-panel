@@ -35,6 +35,10 @@ class SideMenu extends Component {
             <Icon type="shopping-cart" />
             <span className="menu">محصولات</span>
           </Menu.Item>
+          <Menu.Item key="/store/invoice">
+            <Icon type="exception" />
+            <span className="menu">سفارشات</span>
+          </Menu.Item>
           <Menu.Item key="/store/profile">
             <Icon type="shop" />
             <span className="menu">پروفایل</span>

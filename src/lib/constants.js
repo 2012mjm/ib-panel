@@ -11,6 +11,12 @@ export const INVOICE_STATUS = {
   'rejected': 'رد شده',
 }
 
+export const ORDER_STATUS = {
+  'pending': 'در انتظار ارسال',
+  'sent': 'ارسال شده',
+  'rejected': 'رد شده',
+}
+
 export const PRODUCT_STATUS = {
   'pending': 'در انتظار تایید',
   'accepted': 'تایید شده',

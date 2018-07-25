@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { logout } from '../../../actions/auth'
 import SideMenu from '../SideMenu/SideMenu'
 import ProductScreen from '../Product/Screen'
+import InvoiceScreen from '../Invoice/Screen'
 import ProfileScreen from '../Profile/Screen'
 
 class MainStoreScreen extends Component {
@@ -48,6 +49,7 @@ class MainStoreScreen extends Component {
           <Content className="main-content">
             <Switch>
               <Route path="/store/product" component={ProductScreen} />
+              <Route path="/store/invoice" component={InvoiceScreen} />
               <Route path="/store/profile" component={ProfileScreen} />
             </Switch>
             <div className="globalFooter">

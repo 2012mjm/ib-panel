@@ -1,8 +1,8 @@
 import React from 'react'
 import {Table, Icon} from 'antd'
 import PropTypes from 'prop-types'
-import { INVOICE_STATUS } from '../../../lib/constants'
-import { priceFormat, statusInvoiceStyle } from '../../../lib/utils'
+import { ORDER_STATUS } from '../../../lib/constants'
+import { priceFormat, statusOrderStyle } from '../../../lib/utils'
 import moment from 'moment-jalaali'
 moment.loadPersian([{usePersianDigits: true, dialect: 'persian-modern'}])
 
@@ -10,11 +10,6 @@ class TableList extends React.Component {
   render () {
     const {list, loading} = this.props
     const columns = [
-      { title: 'شماره فاکتور',
-        dataIndex: 'number',
-        key: 'number',
-        render: (number, record) => <a onClick={() => this.props.viewer(true, record)}>{number}</a>
-      },
       { title: 'مبلغ',
         dataIndex: 'amount',
         key: 'amount',
@@ -23,7 +18,7 @@ class TableList extends React.Component {
       { title: 'وضعیت',
         dataIndex: 'status',
         key: 'status',
-        render: (status, record) => statusInvoiceStyle(status, INVOICE_STATUS[status])
+        render: (status, record) => statusOrderStyle(status, ORDER_STATUS[status])
       },
       { title: 'دلیل رد',
         dataIndex: 'reasonRejected',

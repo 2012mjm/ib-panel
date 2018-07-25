@@ -52,7 +52,7 @@ class SideMenu extends Component {
             <span className="menu">مشتری‌ها</span>
           </Menu.Item>
           <Menu.Item key="/admin/attribute">
-            <Icon type="user" />
+            <Icon type="exception" />
             <span className="menu">خواص محصول</span>
           </Menu.Item>
         </Menu>

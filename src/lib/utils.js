@@ -70,3 +70,18 @@ export function statusStyle (status, text) {
   if(status === 'rejected') return <span><Badge status="error" />{text}</span>
   return text
 }
+
+export function statusInvoiceStyle (status, text) {
+  if(status === 'pending') return <span><Badge status="default" />{text}</span>
+  if(status === 'paid') return <span><Badge status="processing" />{text}</span>
+  if(status === 'sent') return <span><Badge status="success" />{text}</span>
+  if(status === 'rejected') return <span><Badge status="error" />{text}</span>
+  return text
+}
+
+export function statusOrderStyle (status, text) {
+  if(status === 'pending') return <span><Badge status="processing" />{text}</span>
+  if(status === 'sent') return <span><Badge status="success" />{text}</span>
+  if(status === 'rejected') return <span><Badge status="error" />{text}</span>
+  return text
+}
