@@ -82,6 +82,13 @@ class FormerInfo extends Component {
             <Input />
           )}
         </FormItem>
+        <FormItem label="ابعاد (طول*عرض*ارتفاع) سانتی‌متر" {...formItemLayout}>
+          {getFieldDecorator('dimensions', {
+            initialValue: product.dimensions
+          })(
+            <Input />
+          )}
+        </FormItem>
         <FormItem label="توضیحات (فارسی)" {...formItemLayout}>
           {getFieldDecorator('description_fa', {
             initialValue: (product.description) && product.description.fa
@@ -150,6 +157,7 @@ FormerInfo.defaultProps = {
     discount: '',
     quantity: '',
     weight: '',
+    dimensions: '',
     status: '',
   }
 }
