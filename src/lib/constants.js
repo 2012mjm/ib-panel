@@ -9,6 +9,9 @@ export const INVOICE_STATUS = {
   'pending': 'در انتظار پرداخت',
   'accepted': 'پرداخت شده',
   'rejected': 'رد شده',
+  'sent': 'ارسال توسط فروشندگان',
+  'sent-final': 'ارسال به مشتری',
+  'paid': 'پرداخت شده',
 }
 
 export const ORDER_STATUS = {

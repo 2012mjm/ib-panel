@@ -22,13 +22,13 @@ class ViewModal extends React.Component {
                 <ProductTableList list={invoice.orders} />
               </TabPane>
 
-              <TabPane tab={<span><Icon type="user" />اطلاعات پستی مشتری</span>} key="2">
+              <TabPane tab={<span><Icon type="user" />اطلاعات پستی گیرنده</span>} key="2">
                 <ListItem title="استان" value={invoice.province.name} />
                 <ListItem title="شهر" value={invoice.city.name} />
                 <ListItem title="آدرس" value={invoice.address} />
-                <ListItem title="کد پستی" value={invoice.postal_code} />
+                <ListItem title="کد پستی" value={invoice.postal_code} isLTR />
                 <ListItem title="نام گیرنده" value={invoice.name} />
-                <ListItem title="شماره تماس گیرنده" value={invoice.phone} />
+                <ListItem title="شماره تماس گیرنده" value={invoice.phone} isLTR />
               </TabPane>
             </Tabs>
           }

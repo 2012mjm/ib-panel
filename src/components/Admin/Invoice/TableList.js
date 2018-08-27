@@ -38,6 +38,7 @@ class TableList extends React.Component {
         key: 'operations',
         render: (text, record) => (<div>
           <a onClick={() => this.props.viewer(true, record)}><Icon type="eye" style={{ fontSize: 17 }} /></a>{' '}
+          {record.status === 'sent' && <a onClick={() => this.props.setting(true, record)} title="تغییر وضعیت"><Icon type="setting" style={{ fontSize: 17 }} /></a>}
         </div>)
       }
     ]
@@ -51,6 +52,7 @@ TableList.propTypes = {
   dataSource: PropTypes.array,
   loading: PropTypes.bool,
   viewer: PropTypes.func,
+  setting: PropTypes.func,
 }
 
 export default TableList

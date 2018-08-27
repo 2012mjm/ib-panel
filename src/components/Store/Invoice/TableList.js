@@ -20,11 +20,11 @@ class TableList extends React.Component {
         key: 'status',
         render: (status, record) => statusOrderStyle(status, ORDER_STATUS[status])
       },
-      { title: 'دلیل رد',
-        dataIndex: 'reasonRejected',
-        key: 'reasonRejected'
-      },
-      { title: 'تاریخ ایجاد',
+      // { title: 'دلیل رد',
+      //   dataIndex: 'reasonRejected',
+      //   key: 'reasonRejected'
+      // },
+      { title: 'تاریخ ثبت سفارش',
         dataIndex: 'createdAt',
         key: 'createdAt',
         render: (value, record) => moment(value).locale('fa').format('jD jMMMM jYY (H:mm)')
@@ -33,6 +33,7 @@ class TableList extends React.Component {
         key: 'operations',
         render: (text, record) => (<div>
           <a onClick={() => this.props.viewer(true, record)}><Icon type="eye" style={{ fontSize: 17 }} /></a>{' '}
+          {record.status === 'pending' && <a onClick={() => this.props.setting(true, record)} title="تغییر وضعیت"><Icon type="setting" style={{ fontSize: 17 }} /></a>}
         </div>)
       }
     ]
@@ -46,6 +47,7 @@ TableList.propTypes = {
   dataSource: PropTypes.array,
   loading: PropTypes.bool,
   viewer: PropTypes.func,
+  setting: PropTypes.func,
 }
 
 export default TableList

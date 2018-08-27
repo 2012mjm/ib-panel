@@ -9,7 +9,7 @@ class ProductTableList extends React.Component {
       { title: 'نام محصول',
         dataIndex: 'product',
         key: 'product',
-        render: (product, record) => product.title.fa
+        render: (product, record) => product.name.fa
       },
       { title: 'وزن',
         dataIndex: 'weight',
